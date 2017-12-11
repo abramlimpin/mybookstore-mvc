@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MyBookstoreMVC.Models.Publisher>
+
+@{
+    ViewBag.Title = "List of Publishers";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add a Record", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <a href="@Url.Action("Details","Publishers", new { item.ID })" class="btn btn-info btn-xs" title="View details">
+                <i class="fa fa-edit"></i>
+            </a>
+            <a href="@Url.Action("Delete","Publishers", new { item.ID })" class="btn btn-danger btn-xs" title="Remove record"
+               onclick='return confirm("Are you sure?");'>
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+}
+</table>
+

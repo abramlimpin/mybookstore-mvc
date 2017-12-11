@@ -1,0 +1,91 @@
+﻿@model IEnumerable<MyBookstoreMVC.Models.Author>
+
+@{
+    ViewBag.Title = "List of Authors";
+}
+
+<h2>List of Authors</h2>
+
+<p>
+    @Html.ActionLink("Add a Record", "Add")
+</p>
+<table id="tblAuthors" class="table table-hover">
+    <thead>
+    <th>
+        @Html.DisplayNameFor(model => model.ID)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.LN)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.FN)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Phone)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Address)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.City)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.State)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Zip)
+    </th>
+    <th></th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zip)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details","Authors", new { item.ID })" class="btn btn-info btn-xs" title="View details">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a href="@Url.Action("Delete","Authors", new { item.ID })" class="btn btn-danger btn-xs" title="Remove record"
+                       onclick='return confirm("Are you sure?");'>
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $('#tblAuthors').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'print'
+            ]
+        });
+    });
+</script>
